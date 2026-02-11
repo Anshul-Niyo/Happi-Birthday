@@ -7,192 +7,174 @@
 <style>
 body{
   margin:0;
-  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
-  font-family: 'Comic Sans MS', cursive;
-  overflow:hidden;
+  background:#f8d7da;
+  font-family: 'Georgia', serif;
   display:flex;
   justify-content:center;
   align-items:center;
   height:100vh;
+  overflow:hidden;
 }
 
-/* Start Screen */
-#startScreen{
-  position:absolute;
-  width:100%;
-  height:100%;
-  background:linear-gradient(135deg,#ff758c,#ff7eb3);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  color:white;
-  z-index:10;
-}
-
-#startScreen button{
-  padding:12px 25px;
-  border:none;
-  border-radius:25px;
-  font-size:18px;
-  background:white;
-  color:#ff4f81;
-  cursor:pointer;
-}
-
-/* Book */
+/* Book container */
 .book{
   position:relative;
-  width:360px;
-  height:500px;
-  perspective:2000px;
+  width:400px;
+  height:550px;
+  perspective:2500px;
 }
 
+/* Page styling */
 .page{
   position:absolute;
   width:100%;
   height:100%;
-  background:white;
-  border-radius:15px;
-  box-shadow:0 15px 30px rgba(0,0,0,0.3);
+  background:#fffaf0;
+  border-radius:5px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
   transform-origin:left;
-  transition:transform 1s;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
-  backface-visibility:hidden;
+  transition:transform 1.2s cubic-bezier(.77,0,.175,1);
+  padding:40px;
+  box-sizing:border-box;
 }
 
+/* Stacking order */
+.page:nth-child(1){z-index:9;}
+.page:nth-child(2){z-index:8;}
+.page:nth-child(3){z-index:7;}
+.page:nth-child(4){z-index:6;}
+.page:nth-child(5){z-index:5;}
+.page:nth-child(6){z-index:4;}
+.page:nth-child(7){z-index:3;}
+.page:nth-child(8){z-index:2;}
+.page:nth-child(9){z-index:1;}
+
 .page h1{
-  color:#ff4f81;
+  color:#c2185b;
   text-align:center;
 }
 
 .page p{
-  text-align:center;
+  margin-top:40px;
   font-size:18px;
+  line-height:1.6;
+  text-align:center;
 }
 
-.page button{
-  margin-top:20px;
-  padding:8px 18px;
-  border:none;
-  background:#ff4f81;
-  color:white;
-  border-radius:20px;
-  cursor:pointer;
-}
-
+/* Flip effect */
 .page.flipped{
   transform:rotateY(-180deg);
 }
 
-/* Floating hearts */
-.heart{
+/* Flip corner text */
+.flip-btn{
   position:absolute;
-  color:#ff4f81;
-  animation:float 6s linear infinite;
+  bottom:15px;
+  right:20px;
+  font-size:14px;
+  color:#c2185b;
+  cursor:pointer;
+  font-style:italic;
 }
 
-@keyframes float{
-  from{transform:translateY(100vh);}
-  to{transform:translateY(-10vh);}
+/* Slight preview of next page */
+.book::after{
+  content:"";
+  position:absolute;
+  width:95%;
+  height:95%;
+  background:#fff5e6;
+  top:10px;
+  left:10px;
+  z-index:-1;
+  border-radius:5px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
 }
 </style>
 </head>
 
 <body>
 
-<div id="startScreen">
-  <h1>🎁 A Surprise For Maggi 💖</h1>
-  <button onclick="startExperience()">Tap To Open</button>
-</div>
-
-<audio id="bgMusic" loop>
-  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_7e5c5b2a7b.mp3" type="audio/mpeg">
-</audio>
-
 <div class="book">
 
 <div class="page">
-<h1>🎉 Happi Birthday Maggi 💖</h1>
-<p>This tiny magical book is only for you...</p>
-<button onclick="flip(this)">Next ➜</button>
+<h1>Happi Birthday Maggi 💖</h1>
+<p>
+This little diary is written only for you…<br><br>
+Turn the pages slowly.
+</p>
+<div class="flip-btn" onclick="flip(this)">Flip Page ➜</div>
 </div>
 
 <div class="page">
 <h1>📅 12th February ❤️</h1>
-<p>The day the world received its cutest update.</p>
-<button onclick="flip(this)">Next ➜</button>
+<p>
+The most beautiful chapter of this world began on this date.
+</p>
+<div class="flip-btn" onclick="flip(this)">Flip Page ➜</div>
 </div>
 
 <div class="page">
 <h1>💘 You Stole My Heart</h1>
-<p>And honestly… I hope you keep it forever.</p>
-<button onclick="flip(this)">Next ➜</button>
+<p>
+And honestly… I never want it back.
+</p>
+<div class="flip-btn" onclick="flip(this)">Flip Page ➜</div>
 </div>
 
 <div class="page">
 <h1>🍞 You’re the Jam to My Bread</h1>
-<p>You made my ordinary days sweeter.</p>
-<button onclick="flip(this)">Next ➜</button>
+<p>
+You turned my plain days into sweet memories.
+</p>
+<div class="flip-btn" onclick="flip(this)">Flip Page ➜</div>
 </div>
 
 <div class="page">
-<h1>✨ Everything is Better With You</h1>
-<p>Even doing nothing feels special.</p>
-<button onclick="flip(this)">Next ➜</button>
+<h1>✨ Everything Is Better With You</h1>
+<p>
+Even silence feels warmer when you're beside me.
+</p>
+<div class="flip-btn" onclick="flip(this)">Flip Page ➜</div>
 </div>
 
 <div class="page">
 <h1>💞 You Have My Whole Heart</h1>
-<p>No returns. No refunds. Only love.</p>
-<button onclick="flip(this)">Next ➜</button>
+<p>
+No returns. No exchanges. Just forever.
+</p>
+<div class="flip-btn" onclick="flip(this)">Flip Page ➜</div>
 </div>
 
 <div class="page">
 <h1>🧈 You’re My Butter Half</h1>
-<p>We just melt perfectly together.</p>
-<button onclick="flip(this)">Next ➜</button>
+<p>
+We just melt perfectly together.
+</p>
+<div class="flip-btn" onclick="flip(this)">Flip Page ➜</div>
 </div>
 
 <div class="page">
 <h1>🐝 We Bee-long Together</h1>
-<p>Like honey and sunshine ☀️🍯</p>
-<button onclick="flip(this)">Next ➜</button>
+<p>
+Like honey and sunshine.
+</p>
+<div class="flip-btn" onclick="flip(this)">Flip Page ➜</div>
 </div>
 
 <div class="page">
 <h1>🍿 I’m So Happi You Popped Into My Life</h1>
-<p>And I hope I stay in yours forever 💖</p>
+<p>
+And I hope this diary never ends…
+</p>
 </div>
 
 </div>
 
 <script>
-
-function startExperience(){
-  document.getElementById("startScreen").style.display="none";
-  document.getElementById("bgMusic").play();
+function flip(el){
+  el.parentElement.classList.add("flipped");
 }
-
-function flip(btn){
-  btn.parentElement.classList.add("flipped");
-}
-
-// Floating hearts
-setInterval(()=>{
-  const heart=document.createElement("div");
-  heart.className="heart";
-  heart.innerHTML="❤️";
-  heart.style.left=Math.random()*100+"vw";
-  heart.style.fontSize=(Math.random()*20+10)+"px";
-  document.body.appendChild(heart);
-  setTimeout(()=>heart.remove(),6000);
-},500);
-
 </script>
 
 </body>
