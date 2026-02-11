@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Happi Birthday Maggi 💖</title>
+
+<style>
+body{
+  margin:0;
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+  font-family: 'Comic Sans MS', cursive;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+/* Start Screen */
+#startScreen{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:linear-gradient(135deg,#ff758c,#ff7eb3);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  color:white;
+  z-index:10;
+}
+
+#startScreen button{
+  padding:12px 25px;
+  border:none;
+  border-radius:25px;
+  font-size:18px;
+  background:white;
+  color:#ff4f81;
+  cursor:pointer;
+}
+
+/* Book */
+.book{
+  position:relative;
+  width:360px;
+  height:500px;
+  perspective:2000px;
+}
+
+.page{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:white;
+  border-radius:15px;
+  box-shadow:0 15px 30px rgba(0,0,0,0.3);
+  transform-origin:left;
+  transition:transform 1s;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  backface-visibility:hidden;
+}
+
+.page h1{
+  color:#ff4f81;
+  text-align:center;
+}
+
+.page p{
+  text-align:center;
+  font-size:18px;
+}
+
+.page button{
+  margin-top:20px;
+  padding:8px 18px;
+  border:none;
+  background:#ff4f81;
+  color:white;
+  border-radius:20px;
+  cursor:pointer;
+}
+
+.page.flipped{
+  transform:rotateY(-180deg);
+}
+
+/* Floating hearts */
+.heart{
+  position:absolute;
+  color:#ff4f81;
+  animation:float 6s linear infinite;
+}
+
+@keyframes float{
+  from{transform:translateY(100vh);}
+  to{transform:translateY(-10vh);}
+}
+</style>
+</head>
+
+<body>
+
+<div id="startScreen">
+  <h1>🎁 A Surprise For Maggi 💖</h1>
+  <button onclick="startExperience()">Tap To Open</button>
+</div>
+
+<audio id="bgMusic" loop>
+  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_7e5c5b2a7b.mp3" type="audio/mpeg">
+</audio>
+
+<div class="book">
+
+<div class="page">
+<h1>🎉 Happi Birthday Maggi 💖</h1>
+<p>This tiny magical book is only for you...</p>
+<button onclick="flip(this)">Next ➜</button>
+</div>
+
+<div class="page">
+<h1>📅 12th February ❤️</h1>
+<p>The day the world received its cutest update.</p>
+<button onclick="flip(this)">Next ➜</button>
+</div>
+
+<div class="page">
+<h1>💘 You Stole My Heart</h1>
+<p>And honestly… I hope you keep it forever.</p>
+<button onclick="flip(this)">Next ➜</button>
+</div>
+
+<div class="page">
+<h1>🍞 You’re the Jam to My Bread</h1>
+<p>You made my ordinary days sweeter.</p>
+<button onclick="flip(this)">Next ➜</button>
+</div>
+
+<div class="page">
+<h1>✨ Everything is Better With You</h1>
+<p>Even doing nothing feels special.</p>
+<button onclick="flip(this)">Next ➜</button>
+</div>
+
+<div class="page">
+<h1>💞 You Have My Whole Heart</h1>
+<p>No returns. No refunds. Only love.</p>
+<button onclick="flip(this)">Next ➜</button>
+</div>
+
+<div class="page">
+<h1>🧈 You’re My Butter Half</h1>
+<p>We just melt perfectly together.</p>
+<button onclick="flip(this)">Next ➜</button>
+</div>
+
+<div class="page">
+<h1>🐝 We Bee-long Together</h1>
+<p>Like honey and sunshine ☀️🍯</p>
+<button onclick="flip(this)">Next ➜</button>
+</div>
+
+<div class="page">
+<h1>🍿 I’m So Happi You Popped Into My Life</h1>
+<p>And I hope I stay in yours forever 💖</p>
+</div>
+
+</div>
+
+<script>
+
+function startExperience(){
+  document.getElementById("startScreen").style.display="none";
+  document.getElementById("bgMusic").play();
+}
+
+function flip(btn){
+  btn.parentElement.classList.add("flipped");
+}
+
+// Floating hearts
+setInterval(()=>{
+  const heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="❤️";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.fontSize=(Math.random()*20+10)+"px";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),6000);
+},500);
+
+</script>
+
+</body>
+</html>
