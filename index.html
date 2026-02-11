@@ -17,32 +17,65 @@ body{
   overflow:hidden;
 }
 
-.book{
+/* BOOK COVER BACK */
+.book-wrapper{
   position:relative;
-  width:420px;
-  height:580px;
-  perspective:2500px;
+  width:450px;
+  height:600px;
+  perspective:3000px;
 }
 
+/* Hard Cover */
+.book-wrapper::before{
+  content:"";
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:#8b5e3c;
+  border-radius:10px;
+  box-shadow:0 25px 40px rgba(0,0,0,0.4);
+  z-index:-3;
+}
+
+/* Page stack shadow */
+.book-wrapper::after{
+  content:"";
+  position:absolute;
+  width:95%;
+  height:95%;
+  background:#fdf5e6;
+  top:10px;
+  left:10px;
+  border-radius:8px;
+  z-index:-2;
+  box-shadow:0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* Pages */
 .page{
   position:absolute;
   width:100%;
   height:100%;
   background:#fffaf0;
-  border-radius:10px;
+  border-radius:8px;
   transform-origin:left;
-  transition:transform 1.2s ease;
+  transition:transform 1.4s cubic-bezier(.77,0,.175,1);
   box-shadow:0 15px 25px rgba(0,0,0,0.2);
-  padding:40px;
+  padding:50px;
   box-sizing:border-box;
   font-family:'Playfair Display', serif;
-  overflow:hidden;
 }
 
-.page:nth-child(1){z-index:4;}
-.page:nth-child(2){z-index:3;}
-.page:nth-child(3){z-index:2;}
-.page:nth-child(4){z-index:1;}
+/* stacking */
+.page:nth-child(1){z-index:9;}
+.page:nth-child(2){z-index:8;}
+.page:nth-child(3){z-index:7;}
+.page:nth-child(4){z-index:6;}
+.page:nth-child(5){z-index:5;}
+.page:nth-child(6){z-index:4;}
+.page:nth-child(7){z-index:3;}
+.page:nth-child(8){z-index:2;}
+.page:nth-child(9){z-index:1;}
 
 .page.flipped{
   transform:rotateY(-180deg);
@@ -50,170 +83,117 @@ body{
 
 h1{
   font-family:'Pacifico', cursive;
-  text-align:center;
   color:#d63384;
+  text-align:center;
+  font-size:28px;
 }
 
 p{
+  margin-top:40px;
   text-align:center;
-  font-size:18px;
+  font-size:20px;
+  line-height:1.6;
 }
 
+/* Flip button */
 .flip-btn{
   position:absolute;
-  bottom:15px;
-  right:20px;
-  cursor:pointer;
+  bottom:20px;
+  right:30px;
+  font-size:15px;
   color:#d63384;
+  cursor:pointer;
   font-style:italic;
 }
 
-/* ELEPHANT */
-.elephant{
-  position:absolute;
-  bottom:20px;
-  left:-120px;
-  width:120px;
-  animation:walk 8s linear infinite;
+/* Big Illustrations */
+.big{
+  font-size:80px;
+  text-align:center;
+  margin-top:30px;
 }
 
-@keyframes walk{
-  0%{left:-120px;}
-  100%{left:100%;}
-}
-
-.leg{
-  transform-origin:top;
-  animation:legmove .5s infinite alternate ease-in-out;
-}
-
-@keyframes legmove{
-  from{transform:rotate(15deg);}
-  to{transform:rotate(-15deg);}
-}
-
-.trunk{
-  transform-origin:top;
-  animation:trunkswing 1s infinite alternate ease-in-out;
-}
-
-@keyframes trunkswing{
-  from{transform:rotate(5deg);}
-  to{transform:rotate(-10deg);}
-}
-
-/* BREAD CRAZY */
-.jump{
-  animation:jump 1s infinite alternate;
-}
-
-@keyframes jump{
-  from{bottom:20px;}
-  to{bottom:80px;}
-}
-
-/* JAM SPLASH */
-.jam{
+/* Bee animation */
+.bee{
+  font-size:70px;
   position:absolute;
   top:250px;
-  left:160px;
-  font-size:25px;
-  animation:splash .5s infinite alternate;
-}
-
-@keyframes splash{
-  from{transform:scale(1);}
-  to{transform:scale(1.3);}
-}
-
-/* BEE */
-.bee{
-  position:absolute;
-  top:200px;
-  left:-50px;
-  font-size:30px;
-  animation:fly 3s linear infinite;
+  left:50px;
+  animation:fly 5s infinite linear;
 }
 
 @keyframes fly{
-  0%{left:-50px;}
-  100%{left:100%;}
-}
-
-.run{
-  animation:run 3s linear infinite;
-}
-
-@keyframes run{
-  0%{left:-120px;}
-  50%{left:70%;}
-  100%{left:-120px;}
+  0%{transform:translateX(0);}
+  50%{transform:translateX(250px);}
+  100%{transform:translateX(0);}
 }
 </style>
 </head>
 
 <body>
 
-<div class="book">
+<div class="book-wrapper">
 
 <div class="page">
 <h1>Happi Birthday Maggi 💖</h1>
-<p>A baby elephant came with a birthday cap just to wish you!</p>
-
-<div class="elephant">
-<svg viewBox="0 0 200 200">
-<circle cx="100" cy="100" r="60" fill="#cdb4db"/>
-<circle cx="60" cy="80" r="30" fill="#ffc8dd"/>
-<circle cx="140" cy="80" r="30" fill="#ffc8dd"/>
-<circle cx="80" cy="90" r="5" fill="#000"/>
-<circle cx="120" cy="90" r="5" fill="#000"/>
-<rect class="trunk" x="90" y="100" width="20" height="50" fill="#cdb4db"/>
-<rect class="leg" x="70" y="150" width="20" height="30" fill="#cdb4db"/>
-<rect class="leg" x="110" y="150" width="20" height="30" fill="#cdb4db"/>
-<polygon points="100,20 120,60 80,60" fill="#ff4d6d"/>
-</svg>
+<div class="big">🎀</div>
+<p>This diary is written only for you...</p>
+<div class="flip-btn" onclick="flip(this)">Flip Page ➜</div>
 </div>
 
+<div class="page">
+<h1>📅 12th February ❤️</h1>
+<div class="big">📖</div>
+<p>The day the most beautiful soul was born.</p>
+<div class="flip-btn" onclick="flip(this)">Flip Page ➜</div>
+</div>
+
+<div class="page">
+<h1>You Stole My Heart 💘</h1>
+<div class="big">💖</div>
+<p>And I never want it back.</p>
 <div class="flip-btn" onclick="flip(this)">Flip Page ➜</div>
 </div>
 
 <div class="page">
 <h1>You’re the Jam to My Bread 🍞</h1>
-<p>OH NO… he found bread and went CRAZY 😭</p>
-
-<div class="elephant jump">
-<svg viewBox="0 0 200 200">
-<circle cx="100" cy="100" r="60" fill="#cdb4db"/>
-<circle cx="80" cy="90" r="5" fill="#000"/>
-<circle cx="120" cy="90" r="5" fill="#000"/>
-<rect x="90" y="100" width="20" height="50" fill="#cdb4db"/>
-</svg>
+<div class="big">🍞🍓</div>
+<p>You made my life sweeter.</p>
+<div class="flip-btn" onclick="flip(this)">Flip Page ➜</div>
 </div>
 
-<div class="jam">🍞🍓💥</div>
+<div class="page">
+<h1>Everything Is Better With You ✨</h1>
+<div class="big">🌎</div>
+<p>Even silence feels magical.</p>
+<div class="flip-btn" onclick="flip(this)">Flip Page ➜</div>
+</div>
 
+<div class="page">
+<h1>You Have My Whole Heart 💞</h1>
+<div class="big">❤️</div>
+<p>No refunds. No exchanges.</p>
+<div class="flip-btn" onclick="flip(this)">Flip Page ➜</div>
+</div>
+
+<div class="page">
+<h1>You’re My Butter Half 🧈</h1>
+<div class="big">🧈</div>
+<p>We melt perfectly together.</p>
 <div class="flip-btn" onclick="flip(this)">Flip Page ➜</div>
 </div>
 
 <div class="page">
 <h1>We Bee-long Together 🐝</h1>
-<p>The bee didn’t like that… now he’s running 😭</p>
-
-<div class="elephant run">
-<svg viewBox="0 0 200 200">
-<circle cx="100" cy="100" r="60" fill="#cdb4db"/>
-<rect x="90" y="100" width="20" height="50" fill="#cdb4db"/>
-</svg>
-</div>
-
 <div class="bee">🐝</div>
-
+<p>Like honey and sunshine.</p>
 <div class="flip-btn" onclick="flip(this)">Flip Page ➜</div>
 </div>
 
 <div class="page">
-<h1>But He Still Loves You 💖</h1>
-<p>No bee, no bread, no jam can stop birthday wishes!</p>
+<h1>I’m So Happi You Popped Into My Life 🍿</h1>
+<div class="big">🍿</div>
+<p>And I hope this story never ends.</p>
 </div>
 
 </div>
