@@ -17,7 +17,7 @@ body{
   overflow:hidden;
 }
 
-/* BOOK COVER BACK */
+/* BOOK WRAPPER */
 .book-wrapper{
   position:relative;
   width:450px;
@@ -25,30 +25,63 @@ body{
   perspective:3000px;
 }
 
-/* Hard Cover */
+/* BACK HARD COVER */
 .book-wrapper::before{
   content:"";
   position:absolute;
   width:100%;
   height:100%;
-  background:#8b5e3c;
-  border-radius:10px;
-  box-shadow:0 25px 40px rgba(0,0,0,0.4);
+  background:linear-gradient(145deg,#7a4b2a,#5e381f);
+  border-radius:12px;
+  box-shadow:0 30px 50px rgba(0,0,0,0.5);
   z-index:-3;
 }
 
-/* Page stack shadow */
+/* PAGE STACK */
 .book-wrapper::after{
   content:"";
   position:absolute;
   width:95%;
   height:95%;
   background:#fdf5e6;
-  top:10px;
-  left:10px;
+  top:12px;
+  left:12px;
   border-radius:8px;
   z-index:-2;
-  box-shadow:0 10px 20px rgba(0,0,0,0.2);
+  box-shadow:inset 0 0 15px rgba(0,0,0,0.1);
+}
+
+/* FRONT COVER */
+.cover{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:linear-gradient(145deg,#8b5e3c,#6f4327);
+  border-radius:12px;
+  transform-origin:left;
+  transition:transform 1.5s cubic-bezier(.77,0,.175,1);
+  box-shadow:0 20px 40px rgba(0,0,0,0.4);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  color:#fff;
+  font-family:'Pacifico', cursive;
+  z-index:10;
+}
+
+.cover.flipped{
+  transform:rotateY(-180deg);
+}
+
+.cover h1{
+  font-size:32px;
+}
+
+.cover p{
+  font-family:'Playfair Display', serif;
+  font-size:18px;
+  margin-top:20px;
 }
 
 /* Pages */
@@ -67,15 +100,15 @@ body{
 }
 
 /* stacking */
-.page:nth-child(1){z-index:9;}
-.page:nth-child(2){z-index:8;}
-.page:nth-child(3){z-index:7;}
-.page:nth-child(4){z-index:6;}
-.page:nth-child(5){z-index:5;}
-.page:nth-child(6){z-index:4;}
-.page:nth-child(7){z-index:3;}
-.page:nth-child(8){z-index:2;}
-.page:nth-child(9){z-index:1;}
+.page:nth-child(2){z-index:9;}
+.page:nth-child(3){z-index:8;}
+.page:nth-child(4){z-index:7;}
+.page:nth-child(5){z-index:6;}
+.page:nth-child(6){z-index:5;}
+.page:nth-child(7){z-index:4;}
+.page:nth-child(8){z-index:3;}
+.page:nth-child(9){z-index:2;}
+.page:nth-child(10){z-index:1;}
 
 .page.flipped{
   transform:rotateY(-180deg);
@@ -95,7 +128,6 @@ p{
   line-height:1.6;
 }
 
-/* Flip button */
 .flip-btn{
   position:absolute;
   bottom:20px;
@@ -106,14 +138,12 @@ p{
   font-style:italic;
 }
 
-/* Big Illustrations */
 .big{
   font-size:80px;
   text-align:center;
   margin-top:30px;
 }
 
-/* Bee animation */
 .bee{
   font-size:70px;
   position:absolute;
@@ -127,12 +157,44 @@ p{
   50%{transform:translateX(250px);}
   100%{transform:translateX(0);}
 }
+
+/* BACK COVER */
+.back-cover{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:linear-gradient(145deg,#6f4327,#4a2b18);
+  border-radius:12px;
+  transform-origin:left;
+  transition:transform 1.5s cubic-bezier(.77,0,.175,1);
+  box-shadow:0 20px 40px rgba(0,0,0,0.4);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:40px;
+  box-sizing:border-box;
+  color:white;
+  font-family:'Playfair Display', serif;
+  z-index:0;
+}
+
+.back-cover.close{
+  transform:rotateY(-180deg);
+}
 </style>
 </head>
 
 <body>
 
 <div class="book-wrapper">
+
+<div class="cover" onclick="openBook(this)">
+<h1>Maggi's Birthday Diary 💖</h1>
+<p>Tap to Open</p>
+</div>
+
+<!-- Your original pages unchanged -->
 
 <div class="page">
 <h1>Happi Birthday Maggi 💖</h1>
@@ -194,13 +256,30 @@ p{
 <h1>I’m So Happi You Popped Into My Life 🍿</h1>
 <div class="big">🍿</div>
 <p>And I hope this story never ends.</p>
+<div class="flip-btn" onclick="closeBook()">Close Diary ➜</div>
+</div>
+
+<div class="back-cover" id="backCover">
+<p>
+Abhi bs kamar k ek point mai dard hai,<br><br>
+Tere saath dr k pas har point dard krne lagega…<br><br>
+Tab tak jana hai 😉
+</p>
 </div>
 
 </div>
 
 <script>
+function openBook(el){
+  el.classList.add("flipped");
+}
+
 function flip(el){
   el.parentElement.classList.add("flipped");
+}
+
+function closeBook(){
+  document.getElementById("backCover").classList.add("close");
 }
 </script>
 
